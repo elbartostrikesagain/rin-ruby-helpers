@@ -3,4 +3,4 @@ rvm:
   - 2.2
 
 script:
-  - bin/rake spec
+  - rake spec
