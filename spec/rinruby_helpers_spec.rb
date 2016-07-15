@@ -21,19 +21,19 @@ describe RinRubyHelpers do
   let(:multi_var_training_data)   {[air_flow, water_temp, acid_concentration, stack_loss]}
   let(:multi_var_prediction_data) {[72, 20, 85]}
 
-  let(:r) {RinRuby.new(false)}
+  let(:rinruby) {RinRuby.new(false)}
 
   describe "linear regression prediction" do
     context "single variable" do
       it "returns a prediction value" do
-        prediction = r.regression_prediction(training_data: single_var_training_data, predict_data: single_var_prediction_data)
+        prediction = rinruby.regression_prediction(training_data: single_var_training_data, predict_data: single_var_prediction_data)
         expect(prediction).to be_within(0.01).of(84.728)
       end
     end
 
     context "multi variable" do
       it "returns a prediction value" do
-        prediction = r.regression_prediction(training_data: multi_var_training_data, predict_data: multi_var_prediction_data)
+        prediction = rinruby.regression_prediction(training_data: multi_var_training_data, predict_data: multi_var_prediction_data)
         expect(prediction).to be_within(0.001).of(24.582)
       end
     end
@@ -58,7 +58,7 @@ describe RinRubyHelpers do
       }
 
       it "returns a prediction value based on the specified feature(method)" do
-        prediction = r.object_regression_prediction(features: [:prelim_test_score],
+        prediction = rinruby.object_regression_prediction(features: [:prelim_test_score],
                                                     training_data: test_scores,
                                                     predict_data: single_var_prediction_data,
                                                     predict_method: :final_test_score)
@@ -86,7 +86,7 @@ describe RinRubyHelpers do
       }
 
       it "returns a prediction value based on the specified features(methods)" do
-        prediction = r.object_regression_prediction(features: [:air_flow, :water_temp, :acid_concentration],
+        prediction = rinruby.object_regression_prediction(features: [:air_flow, :water_temp, :acid_concentration],
                                                     training_data: stack_losses,
                                                     predict_data: multi_var_prediction_data,
                                                     predict_method: :loss)
