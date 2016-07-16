@@ -1,24 +1,27 @@
 # RinRubyHelpers
+[![Build Status](https://travis-ci.org/elbartostrikesagain/rin-ruby-helpers.svg?branch=master)](https://travis-ci.org/elbartostrikesagain/rin-ruby-helpers)
 
-TODO: Write a gem description
+This gem adds additional methods to the Rinruby gem which is used to connect to R. Currently, it only has the ability to run single variable and multi variable regression on arrays of numbers, as well as an arrays of objects. Look at the /specs for documentation.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'rin_ruby_helpers'
+    gem 'rin_ruby_helpers', git: 'git://github.com/elbartostrikesagain/rin-ruby-helpers.git'
 
 And then execute:
 
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install rin_ruby_helpers
+    $ bundle install
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+Class RinRuby
+  include RinRubyHelpers
+end
+```
+
+(then see specs for usage on added methods)
 
 ## Contributing
 

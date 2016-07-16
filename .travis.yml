@@ -2,5 +2,8 @@ language: ruby
 rvm:
   - 2.2
 
+before_install:
+  - sudo apt-get -y install r-base
+
 script:
   - bundle exec rake spec
