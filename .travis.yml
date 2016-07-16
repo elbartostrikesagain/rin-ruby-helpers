@@ -4,6 +4,7 @@ rvm:
 
 before_install:
   - sudo apt-get -y install r-base
+  - gem install bundler
 
 script:
   - bundle exec rake spec

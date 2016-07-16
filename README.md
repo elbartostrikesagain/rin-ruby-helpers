@@ -14,6 +14,7 @@ And then execute:
     $ bundle install
 
 ## Usage
+Install and require RinRuby then include the helpers module on the RinRuby class like so:
 
 ```
 Class RinRuby
