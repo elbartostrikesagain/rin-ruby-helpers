@@ -53,9 +53,7 @@ class StackLoss
 end
 
 stack_losses = [...] #array of StackLoss objects
-predict_data = [72, 20, 85] #predict given [air_flow, water_temp, acid_concentration]
-stack_loss_features =
-predict_method = :stack_loss
+predict_data = [72, 20, 85] #predict for given [air_flow, water_temp, acid_concentration]
 
 rinruby.object_regression_prediction(training_data: stack_losses,
                                      predict_data: predict,
