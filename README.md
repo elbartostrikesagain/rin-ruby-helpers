@@ -57,10 +57,10 @@ predict_data = [72, 20, 85] #predict given [air_flow, water_temp, acid_concentra
 stack_loss_features =
 predict_method = :stack_loss
 
-rinruby.regression_prediction(training_data: stack_losses,
-                              predict_data: predict,
-                              features: [:air_flow, :water_temp, :acid_concentration],
-                              predict_method: :stack_loss)
+rinruby.object_regression_prediction(training_data: stack_losses,
+                                     predict_data: predict,
+                                     features: [:air_flow, :water_temp, :acid_concentration],
+                                     predict_method: :stack_loss)
 ```
 
 ## Contributing
