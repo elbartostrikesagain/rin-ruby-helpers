@@ -33,7 +33,7 @@ end
 
 then you can use the additional helper methods:
 
-# predict from arrays:
+#### predict from arrays:
 ```
 rinruby = RinRuby.new
 
@@ -43,7 +43,7 @@ rinruby.regression_prediction(training_data: training_data, predict_data: predic
 rinruby.quit
 ```
 
-# predict from objects:
+#### predict from objects:
 ```
 #given an example class that has methods air_flow, water_temp and acid_concentration which are features (independent variables)
 #predict on stack_loss (dependent variable)
