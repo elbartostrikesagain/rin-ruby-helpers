@@ -3,22 +3,23 @@
 
 ## What does this do?
 
-This gem adds additional methods to the Rinruby gem which is used to connect to R. Currently, the only helpers are for linear regression on arrays of numbers, as well as an arrays of objects.
+This gem adds additional methods to the Rinruby gem which is used to connect to R. Currently, the only helpers are for linear regression on arrays of numbers, as well as an arrays of objects. The goal of this gem is to make implementing statistical methods(and types of machine learning that use these methods) easy to rubists to use, with minimal dependencies. Other gems that currently do this are the simplestats gem but it has many more dependencies which are very out of date.
 
 #### About Linear regressions
 
-Linear regression is a type of supervised learning that models the relationship between scalar dependent and explanatory values. This allows you to infer a function from training data. For example, you could predict the price of a house given the number of square feet of a house. You would take an array of house objects, where a house object has a price, number of square feet, create a linear regression, evaluate if there is a correlation between these variables, and then predict house prices on other house objects of unknown prices(first example in usage below). (Note this is a simple example - there are many other things that should be factored in when estimating the price of a house.)
+Linear regression is a type of supervised learning that models the relationship between scalar dependent and explanatory values. This allows you to infer a function from training data.
+For example, you could predict the price of a house given the number of square feet of a house. You would take an array of house objects, where a house object has a price, number of square feet, create a linear regression, evaluate if there is a correlation between these variables, and then predict house prices on other house objects of unknown prices(first example in usage below). (Note this is a simple example - there are many other things that should be factored in when estimating the price of a house.)
 
 
 ![sample house price image](http://www.holehouse.org/mlclass/01_02_Introduction_regression_analysis_and_gr_files/Image.png "house price sample image")
 
 #### Other notes
 
-I only added helper methods for the R lm method (linear model). There are other types of regressions that might suite your needs better. If they are available in R, please contribute.
+Currently, the only supported helper methods are for the R `lm` method (linear model). There are other types of regressions that might suite your needs better. If they are available in R, please contribute.
 
-Word of caution: RinRuby is not the fastest way to use R with ruby(infact it is the slowest of the gems I researched), and large regressions are probably fairly slow. I recommend doing large regressions in a background worker when possible. You can also store the equation via the estimates for fast predictions.
+Word of caution: RinRuby is not the fastest way to use R with ruby(infact it is the slowest of the popular gems to interface with R), and large regressions are probably fairly slow. Slow tasks are great canidates for background workers when possible. Additionally, you can also store the equation via the estimates variables for fast predictions(only retraining is slow then).
 
-I'm using a rin ruby fork right now that doesn't support windows.
+This Gem is currently using a RinRuby fork right now that doesn't support windows.
 
 ## Installation
 
