@@ -1,9 +1,24 @@
 # RinRubyHelpers
 [![Build Status](https://travis-ci.org/elbartostrikesagain/rin-ruby-helpers.svg?branch=master)](https://travis-ci.org/elbartostrikesagain/rin-ruby-helpers)
 
-This gem adds additional methods to the Rinruby gem which is used to connect to R. Currently, the only helpers are for single variable and multi variable regression on arrays of numbers, as well as an arrays of objects. Look at the /specs for documentation.
+## What does this do?
 
-Word of caution: RinRuby is not the fastest way to use R with ruby(infact it is the slowest), and large regressions are probably fairly slow. I recommend doing large regressions in a background worker.
+This gem adds additional methods to the Rinruby gem which is used to connect to R. Currently, the only helpers are for single variable and multi variable linear regression on arrays of numbers, as well as an arrays of objects.
+
+#### Why is this useful?
+
+Linear regression is type of supervised learning which is a subset of machine learning. It is useful in predicting variables which have a linear relationship. For example, if you could predict the price of the house given the number of square feet of the house. You would take an array of house objects, where a house object has a price, number of square feet, create a linear regression, evaluate if there is a correlation between these variables, and then predict house prices on other house objects of unknown prices(first example in usage below). (Note this is a simple example - there are many other things that should be factored in when estimating the price of a house.)
+
+
+![sample house price image](http://www.holehouse.org/mlclass/01_02_Introduction_regression_analysis_and_gr_files/Image.png "house price sample image")
+
+#### Other notes
+
+I only added helper methods for the R lm method (linear model). There are other types of regressions that might suite your needs better. If they are available in R, please contribute.
+
+Word of caution: RinRuby is not the fastest way to use R with ruby(infact it is the slowest of the gems I researched), and large regressions are probably fairly slow. I recommend doing large regressions in a background worker when possible. You can also store the equation via the estimates for fast predictions.
+
+I'm using a rin ruby fork right now that doesn't support windows.
 
 ## Installation
 
@@ -16,7 +31,7 @@ And then execute:
     $ bundle install
 
 ## Dependencies
-R
+R must be installed and rinruby must be able to connect to R
 
 ## Usage
 
@@ -31,34 +46,60 @@ Class RinRuby
 end
 ```
 
-then you can use the additional helper methods:
+then you can use the additional helper methods: `linear_regression` and `object_linear_regression`
+
+#### predict from objects:
+```
+#given an example class that has methods square_feet and acres which are features (independent variables)
+#predict price (dependent variable)
+
+class House
+  attr_accessor :square_feet, :acres, :price
+end
+
+stack_losses = [...] #array of house objects(with known price)
+predict_data = [2000, 1.2] #predict a house for 2000 square_feet and 1.2 acres
+
+linear_regression_object = rinruby.object_linear_regression(training_data: stack_losses,
+                                                            predict_data: predict,
+                                                            features: [:square_feet, :acres],
+                                                            predict_method: :price)
+rinruby.quit
+
+linear_regression_object.prediction
+linear_regression_object.p_value
+linear_regression_object.r_squared
+linear_regression_object.adjusted_r_squared
+linear_regression_object.standard_error
+linear_regression_object.fstatistic
+linear_regression_object.errors
+linear_regression_object.estimates
+linear_regression_object.t_values
+linear_regression_object.prediction_interval #95%
+linear_regression_object.confidence_interval #95%
+```
 
 #### predict from arrays:
 ```
 rinruby = RinRuby.new
 
+#first array(s) are features/independent variables, last array are the predictors/dependent variables
 training_data = [[1,2,3,4], [2,4,6,8]]
 predict_data = [5]
-rinruby.regression_prediction(training_data: training_data, predict_data: predict) #=> 10
+
+linear_regression_object = rinruby.linear_regression(training_data: training_data, predict_data: predict)
+
 rinruby.quit
-```
 
-#### predict from objects:
-```
-#given an example class that has methods air_flow, water_temp and acid_concentration which are features (independent variables)
-#predict on stack_loss (dependent variable)
-
-class StackLoss
-  attr_accessor :air_flow, :water_temp, :acid_concentration, :stack_loss
-end
-
-stack_losses = [...] #array of StackLoss objects
-predict_data = [72, 20, 85] #predict for given [air_flow, water_temp, acid_concentration]
-
-rinruby.object_regression_prediction(training_data: stack_losses,
-                                     predict_data: predict,
-                                     features: [:air_flow, :water_temp, :acid_concentration],
-                                     predict_method: :stack_loss)
+linear_regression_object.prediction #=> 10
+linear_regression_object.p_value
+linear_regression_object.r_squared
+linear_regression_object.adjusted_r_squared
+linear_regression_object.standard_error
+linear_regression_object.fstatistic
+linear_regression_object.errors
+linear_regression_object.estimates
+linear_regression_object.t_values
 ```
 
 ## Contributing

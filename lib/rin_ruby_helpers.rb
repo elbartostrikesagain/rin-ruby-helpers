@@ -1,8 +1,9 @@
 require "rin_ruby_helpers/version"
+require "rin_ruby_helpers/linear_model"
 
 module RinRubyHelpers
-  #training_data: [ [100,150,200], [1,2,3], [200,300,500] ]
-  def regression_prediction(training_data:, predict_data:)
+
+  def linear_regression(training_data:, predict_data:)
     data_frame_names = []
     vector_names = []
 
@@ -22,22 +23,23 @@ module RinRubyHelpers
       data = cbind(#{data_frame_names.join(',')})
       data.lm = lm(#{vector_names.last} ~ #{vector_names.join(' + ')}, data=data)
       newdata = data.frame(#{predict_data_str})
-      prediction = predict(data.lm, newdata)
+      fstatistic = summary(data.lm)$fstatistic
     })
 
-    self.eval("newdata")
-
-    return self.pull("prediction")
+    linear_model = LinearModel.new(self, vector_names, predict_data)
+    return linear_model
   end
 
-
-  def object_regression_prediction(training_data:, predict_data:, features:, predict_method:)
+  def object_linear_regression(training_data:, predict_data:, features:, predict_method:)
     raise "Dimension mismatch on features and predict_data" unless features.length == predict_data.length
 
     predict_method = [predict_method] unless predict_method.is_a?(Array)
     methods = features + predict_method
     training_data = methods.map{ |method| training_data.map{|td| td.send(method)} }
 
-    regression_prediction(training_data: training_data, predict_data: predict_data)
+    linear_model = linear_regression(training_data: training_data, predict_data: predict_data)
+    linear_model.features = features
+
+    return linear_model
   end
 end
