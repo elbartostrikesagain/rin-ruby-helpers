@@ -3,9 +3,8 @@ module RinRubyHelpers
     attr_reader :prediction, :adjusted_r_squared, :r_squared, :standard_error, :fstatistic, :p_value
     attr_accessor :features
 
-    def initialize(r, methods, predict_values)
+    def initialize(r, methods)
       @features = methods[0..(methods.length-2)]
-      @predict_values = predict_values
 
       @prediction = r.pull("predict(data.lm, newdata)")
       @lower_confidence = r.pull("predict(data.lm, newdata, interval='confidence')[2]")

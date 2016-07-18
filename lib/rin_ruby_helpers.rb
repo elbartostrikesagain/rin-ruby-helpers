@@ -26,7 +26,7 @@ module RinRubyHelpers
       fstatistic = summary(data.lm)$fstatistic
     })
 
-    linear_model = LinearModel.new(self, vector_names, predict_data)
+    linear_model = LinearModel.new(self, vector_names)
     return linear_model
   end
 
