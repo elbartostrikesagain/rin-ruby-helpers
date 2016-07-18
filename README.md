@@ -11,7 +11,7 @@ Linear regression is a type of supervised learning that models the relationship 
 For example, you could predict the price of a house given the number of square feet of a house. You would take an array of house objects, where a house object has a price, number of square feet, create a linear regression, evaluate if there is a correlation between these variables, and then predict house prices on other house objects of unknown prices(first example in usage below). (Note this is a simple example - there are many other things that should be factored in when estimating the price of a house.)
 
 
-![sample house price image](http://www.holehouse.org/mlclass/01_02_Introduction_regression_analysis_and_gr_files/Image.png "house price sample image")
+![sample house price image](https://cloud.githubusercontent.com/assets/398104/16933447/b166fda0-4d0a-11e6-9afb-d0c6ed538f8c.png "house price sample image")
 
 #### Other notes
 
