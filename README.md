@@ -3,11 +3,11 @@
 
 ## What does this do?
 
-This gem adds additional methods to the Rinruby gem which is used to connect to R. Currently, the only helpers are for single variable and multi variable linear regression on arrays of numbers, as well as an arrays of objects.
+This gem adds additional methods to the Rinruby gem which is used to connect to R. Currently, the only helpers are for linear regression on arrays of numbers, as well as an arrays of objects.
 
-#### Why is this useful?
+#### About Linear regressions
 
-Linear regression is type of supervised learning which is a subset of machine learning. It is useful in predicting variables which have a linear relationship. For example, if you could predict the price of the house given the number of square feet of the house. You would take an array of house objects, where a house object has a price, number of square feet, create a linear regression, evaluate if there is a correlation between these variables, and then predict house prices on other house objects of unknown prices(first example in usage below). (Note this is a simple example - there are many other things that should be factored in when estimating the price of a house.)
+Linear regression is a type of supervised learning that models the relationship between scalar dependent and explanatory values. This allows you to infer a function from training data. For example, you could predict the price of a house given the number of square feet of a house. You would take an array of house objects, where a house object has a price, number of square feet, create a linear regression, evaluate if there is a correlation between these variables, and then predict house prices on other house objects of unknown prices(first example in usage below). (Note this is a simple example - there are many other things that should be factored in when estimating the price of a house.)
 
 
 ![sample house price image](http://www.holehouse.org/mlclass/01_02_Introduction_regression_analysis_and_gr_files/Image.png "house price sample image")
@@ -50,17 +50,16 @@ then you can use the additional helper methods: `linear_regression` and `object_
 
 #### predict from objects:
 ```
-#given an example class that has methods square_feet and acres which are features (independent variables)
-#predict price (dependent variable)
+#given an example class that has methods square_feet, acres and price, predict the price of a home for a a given amount of square_feet and arces
 
 class House
   attr_accessor :square_feet, :acres, :price
 end
 
-stack_losses = [...] #array of house objects(with known price)
+homes = [...] #array of house objects(with known price)
 predict_data = [2000, 1.2] #predict a house for 2000 square_feet and 1.2 acres
 
-linear_regression_object = rinruby.object_linear_regression(training_data: stack_losses,
+linear_regression_object = rinruby.object_linear_regression(training_data: homes,
                                                             predict_data: predict,
                                                             features: [:square_feet, :acres],
                                                             predict_method: :price)
