@@ -15,11 +15,9 @@ For example, you could predict the price of a house given the number of square f
 
 #### Other notes
 
-Currently, the only supported helper methods are for the R `lm` method (linear model). There are other types of regressions that might suite your needs better. If they are available in R, please contribute.
+Currently, the only supported helper methods are for the R `lm` method (linear model). There are other types of regressions that might suite your needs better. Please contribute :)
 
 Word of caution: RinRuby is not the fastest way to use R with ruby(infact it is the slowest of the popular gems to interface with R), and large regressions are probably fairly slow. Slow tasks are great canidates for background workers when possible. Additionally, you can also store the equation via the estimates variables for fast predictions(only retraining is slow then).
-
-This Gem is currently using a RinRuby fork right now that doesn't support windows.
 
 ## Installation
 
@@ -32,14 +30,15 @@ And then execute:
     $ bundle install
 
 ## Dependencies
-R must be installed and rinruby must be able to connect to R
+* R must be installed and rinruby must be able to connect to R
+* You must have a version of rinruby installed. The version this gem has been developed against is https://github.com/sebastianzillessen/rinruby, so use caution when developing against other gems.
 
 ## Usage
 
 I highly recommend viewing the specs for usage but here is some documentation:
 
 
-Install and require RinRuby then include the helpers module on the RinRuby class like so:
+Install and require RinRuby then include the helpers module on the RinRuby class to add the helper methods like so:
 
 ```
 Class RinRuby
