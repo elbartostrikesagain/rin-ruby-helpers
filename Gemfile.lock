@@ -1,0 +1,43 @@
+GIT
+  remote: git://github.com/sebastianzillessen/rinruby.git
+  revision: d3767f9744252129f4822a60b836fb1360075d02
+  specs:
+    rootapp-rinruby (3.1.1)
+
+PATH
+  remote: .
+  specs:
+    rin_ruby_helpers (0.0.2)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    byebug (9.0.5)
+    diff-lcs (1.2.5)
+    rake (11.2.2)
+    rspec (3.5.0)
+      rspec-core (~> 3.5.0)
+      rspec-expectations (~> 3.5.0)
+      rspec-mocks (~> 3.5.0)
+    rspec-core (3.5.1)
+      rspec-support (~> 3.5.0)
+    rspec-expectations (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-mocks (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-support (3.5.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  byebug
+  rake
+  rin_ruby_helpers!
+  rootapp-rinruby!
+  rspec
+
+BUNDLED WITH
+   1.12.5
